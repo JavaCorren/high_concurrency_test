@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.high_currency_test.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.high_currency_test.domain.UserInfo">
+    <id column="userID" jdbcType="BIGINT" property="userID" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="userAge" jdbcType="INTEGER" property="userAge" />
+    <result column="userMobile" jdbcType="VARCHAR" property="userMobile" />
+    <result column="createStamp" jdbcType="TIMESTAMP" property="createStamp" />
+    <result column="actionStamp" jdbcType="TIMESTAMP" property="actionStamp" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    userID, userName, userAge, userMobile, createStamp, actionStamp
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_hc_user_info
+    where userID = #{userID,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tbl_hc_user_info
+    where userID = #{userID,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.example.high_currency_test.domain.UserInfo">
+    insert into tbl_hc_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        userID,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="userAge != null">
+        userAge,
+      </if>
+      <if test="userMobile != null">
+        userMobile,
+      </if>
+      <if test="createStamp != null">
+        createStamp,
+      </if>
+      <if test="actionStamp != null">
+        actionStamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userID != null">
+        #{userID,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null">
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createStamp != null">
+        #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionStamp != null">
+        #{actionStamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.high_currency_test.domain.UserInfo">
+    update tbl_hc_user_info
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null">
+        userAge = #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userMobile != null">
+        userMobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createStamp != null">
+        createStamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionStamp != null">
+        actionStamp = #{actionStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userID = #{userID,jdbcType=BIGINT}
+  </update>
+
+</mapper>
