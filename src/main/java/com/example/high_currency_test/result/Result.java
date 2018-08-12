@@ -4,6 +4,8 @@ import com.example.high_currency_test.conf.exception.ResultCode;
 import com.example.high_currency_test.conf.exception.ResultCodeProperties;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 响应结果数据集封装类
  *
@@ -11,7 +13,7 @@ import lombok.Data;
  * @created on 2018/8/11
  **/
 @Data
-public class Result<T> {
+public class Result<T>  implements Serializable{
 
     private String code ;
     private String msg ;

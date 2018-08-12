@@ -66,23 +66,19 @@
     window.onload = function () {
 
           $('#submit').click(function() {
-
               $("#loginForm").validate({
-
                   submitHandler:function () {
                       doLogin();
                   }
-
               });
           });
 
 
           function doLogin() {
-
               var userMobile = $('#userMobile').val();
               var userPassword = $('#userPassword').val();
               var salt = '1a2b3c4d5e6f';
-              var userPWD = md5(salt.charAt(3) + salt.charAt(1) + userPassword +salt.charAt(3)+ salt.charAt(9)) ;
+              var userPWD = md5(salt.charAt(3) +''+ salt.charAt(1) +''+ userPassword +''+salt.charAt(3)+''+ salt.charAt(9)) ;
 
               $.ajax({
                   url: "/login/do_login",
@@ -93,17 +89,18 @@
                   },
 
                   success:function (data) {
-                      console.log('yessss');
-                      console.log(data);
-                      return false;
+
+                      if (data.code === "000") {
+                          window.location.href = "/product/list";
+                      } else {
+                          alert(data.msg);
+                      }
                   },
 
                   error:function (data) {
-                      console.log('noooo');
                         console.log(data);
-                        return false;
+                        return "";
                   }
-
               })
           }
     }

@@ -20,12 +20,10 @@ public class LengthValidator extends ValidatorHandler<String> implements Validat
     public boolean validate(ValidatorContext context, String s) {
 
         if (StringUtils.isEmpty(s) ) {
-            context.addErrorMsg("字符长度超过允许长度!");
             return false;
         }
 
         if (s.length() <= MIN || s.length() > MAX) {
-            context.addErrorMsg("字符串长度不在"+MIN+"和"+MAX+"之间!");
             return false;
         }
 

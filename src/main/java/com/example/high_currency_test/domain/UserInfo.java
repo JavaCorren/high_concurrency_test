@@ -81,4 +81,20 @@ public class UserInfo implements Serializable {
          return userInfo;
     }
 
+    /**
+     * 对关键信息擦除，防止被浏览器查看到
+     * @param userInfo
+     * @return
+     */
+    public static UserInfo eraseSensitiveInfo(UserInfo userInfo) {
+
+        if (null == userInfo) {
+            throw ServiceException.getServiceExceptionByCode(ResultCode.USER_INFO_OBJECT_IS_NULL);
+        }
+
+        userInfo.setUserPWD("");
+        userInfo.setUserSalt("");
+        return userInfo;
+    }
+
 }

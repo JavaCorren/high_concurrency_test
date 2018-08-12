@@ -31,7 +31,7 @@ public class MyValidatorCallBack extends DefaultValidateCallback {
      */
     @Override
     public void onFail(ValidatorElementList validatorElementList, List<ValidationError> errors) {
-        throw ServiceException.getServiceExceptionByCode(String.valueOf(errors.get(0).getErrorCode()));
+        throw ServiceException.getServiceExceptionByCode(String.valueOf(errors.get(0).getErrorMsg()));
     }
 
     /**

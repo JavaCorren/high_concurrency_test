@@ -2,6 +2,8 @@ package com.example.high_currency_test.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.util.UUID;
+
 /**
  * MD5Util工具类
  *
@@ -11,11 +13,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class MD5Util {
 
     /**
-     * MD5 加盐字符
+     * MD5 加盐字符(前端)
      */
-    private static final String salt = "1a2b3c4d";
+    private static final String salt = "1a2b3c4d5e6f";
 
-        public static String md5(String src) {
+    public static String md5(String src) {
             return DigestUtils.md5Hex(src);
         }
 

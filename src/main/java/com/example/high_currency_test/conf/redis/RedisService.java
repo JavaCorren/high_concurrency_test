@@ -62,4 +62,14 @@ public class RedisService {
             return result;
         }
 
+    /**
+     * 根据key取值
+     * @param key
+     * @param <T>
+     * @return
+     */
+    public<T> T getValue(String key) {
+            return (T)redisTemplate.opsForValue().get(key);
+        }
+
 }

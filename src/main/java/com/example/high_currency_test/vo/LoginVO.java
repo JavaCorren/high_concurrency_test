@@ -27,6 +27,6 @@ public class LoginVO {
     /**
      * 用户密码
      */
-    @FluentValidate(value = BlankValidator.class)
+    @FluentValidate(value = BlankValidator.class, resultCode = ResultCode.BLANK_USER_PASSWORD_NOT_ALLOWED)
     private String userPWD;
 }

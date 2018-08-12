@@ -44,4 +44,11 @@ public interface UserInfoService {
      * @return
      */
     List<UserInfo> getUser(String userMobile, String userName);
+
+    /**
+     * 根据token获取用户信息
+     * @param token
+     * @return
+     */
+    UserInfo getUserInfoByToken(String token);
 }

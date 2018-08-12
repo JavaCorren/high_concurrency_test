@@ -2,6 +2,7 @@ package com.example.high_currency_test.service;
 
 import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
 import com.example.high_currency_test.common.UserInfoCommonService;
+import com.example.high_currency_test.conf.redis.RedisService;
 import com.example.high_currency_test.domain.UserInfo;
 import com.example.high_currency_test.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 
     @Autowired
     private UserInfoCommonService userInfoCommonService;
+
+    @Autowired
+    private RedisService redisService;
 
     /**
      * 添加用户的实现方法
@@ -56,5 +60,8 @@ public class UserInfoServiceImpl implements UserInfoService{
         return userInfoCommonService.getUserListByMoBileAndName(userMobile, userName);
     }
 
+    @Override
+    public UserInfo getUserInfoByToken(String token) {
 
+    }
 }

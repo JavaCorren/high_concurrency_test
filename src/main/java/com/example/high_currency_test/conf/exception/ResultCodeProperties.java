@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 public class ResultCodeProperties {
 
     //错误码定义的properties文件路径
-    public static final String ERROR_MESSAGE_PATH = "classpath:errorMessage";
+    public static final String ERROR_MESSAGE_PATH = "classpath:errorCodeMessage";
 
     //将spring消息源持有成对象属性
     private static ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -44,7 +44,7 @@ public class ResultCodeProperties {
 
         String errorMessage = messageSource.getMessage(errorCode, null, null);
 
-        if (StringUtils.isEmpty(errorMessage)) {
+        if (!StringUtils.isEmpty(errorMessage)) {
             return errorMessage;
         }
 

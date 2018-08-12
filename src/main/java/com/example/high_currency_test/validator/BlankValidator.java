@@ -17,7 +17,6 @@ public class BlankValidator extends ValidatorHandler<String> implements Validato
     public boolean validate(ValidatorContext context, String s) {
 
         if (StringUtils.isEmpty(s) ) {
-            context.addErrorMsg("该字段为空");
             return false;
         }
 

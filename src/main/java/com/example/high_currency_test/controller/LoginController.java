@@ -30,9 +30,8 @@ public class LoginController {
         @Autowired
         private UserInfoService userInfoService;
 
-        @RequestMapping("/login")
+        @RequestMapping("/loginPage")
         public String login() {
-
 
             return "login";
         }
@@ -45,9 +44,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/login/do_login", produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Result doLogin(
-//            @FluentValid
-                    LoginVO loginVO) {
+    public Result doLogin(@FluentValid LoginVO loginVO) {
 
             //获取vo的手机号
             String userMobile = loginVO.getUserMobile();
@@ -70,9 +67,9 @@ public class LoginController {
             return users.stream()
                     .filter(s -> s.getUserMobile().equals(userMobile) && passValidator.test(userPWD, s))
                     .findAny()
+                    .map(UserInfo::eraseSensitiveInfo)
                     .map(s -> new Result(s))
                     .orElseThrow(() -> ServiceException.getServiceExceptionByCode(ResultCode.WRONG_USER_PASSWORD));
-
     }
 
         /**
@@ -86,5 +83,7 @@ public class LoginController {
 
                 return actual.equals(anticipated);
         };
+
+
 
 }
