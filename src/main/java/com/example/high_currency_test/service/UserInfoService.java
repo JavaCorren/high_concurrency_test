@@ -1,6 +1,9 @@
 package com.example.high_currency_test.service;
 
 import com.example.high_currency_test.domain.UserInfo;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author ZhangGR
@@ -33,4 +36,12 @@ public interface UserInfoService {
      * @return
      */
     UserInfo getUser(Long userID);
+
+    /**
+     *  根据手机号、姓名获取用户信息列表
+     * @param userMobile
+     * @param userName
+     * @return
+     */
+    List<UserInfo> getUser(String userMobile, String userName);
 }

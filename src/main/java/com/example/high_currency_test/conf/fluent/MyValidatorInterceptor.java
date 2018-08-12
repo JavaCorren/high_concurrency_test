@@ -1,4 +1,4 @@
-package com.example.high_currency_test.conf;
+package com.example.high_currency_test.conf.fluent;
 
 import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
@@ -27,7 +27,7 @@ public class MyValidatorInterceptor {
     public BeanNameAutoProxyCreator validateProxyCreator(){
         BeanNameAutoProxyCreator validateProxyCreator = new BeanNameAutoProxyCreator();
         validateProxyCreator.setInterceptorNames("fluentValidateInterceptor");
-        validateProxyCreator.setBeanNames("*Impl");
+        validateProxyCreator.setBeanNames("*Impl", "*Controller");
         validateProxyCreator.setProxyTargetClass(true);
         return validateProxyCreator;
     }

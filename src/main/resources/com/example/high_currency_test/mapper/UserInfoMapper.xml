@@ -6,12 +6,14 @@
     <result column="userName" jdbcType="VARCHAR" property="userName" />
     <result column="userAge" jdbcType="INTEGER" property="userAge" />
     <result column="userMobile" jdbcType="VARCHAR" property="userMobile" />
+    <result column="userPWD" jdbcType="VARCHAR" property="userPWD" />
+    <result column="userSalt" jdbcType="VARCHAR" property="userSalt" />
     <result column="createStamp" jdbcType="TIMESTAMP" property="createStamp" />
     <result column="actionStamp" jdbcType="TIMESTAMP" property="actionStamp" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    userID, userName, userAge, userMobile, createStamp, actionStamp
+    userID, userName, userAge, userMobile, userPWD, userSalt, createStamp, actionStamp
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -41,6 +43,12 @@
       <if test="userMobile != null">
         userMobile,
       </if>
+      <if test="userPWD != null">
+        userPWD,
+      </if>
+      <if test="userSalt != null">
+        userSalt,
+      </if>
       <if test="createStamp != null">
         createStamp,
       </if>
@@ -60,6 +68,12 @@
       </if>
       <if test="userMobile != null">
         #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userPWD != null">
+        #{userPWD,jdbcType=VARCHAR},
+      </if>
+      <if test="userSalt != null">
+        #{userSalt,jdbcType=VARCHAR},
       </if>
       <if test="createStamp != null">
         #{createStamp,jdbcType=TIMESTAMP},
@@ -82,6 +96,12 @@
       <if test="userMobile != null">
         userMobile = #{userMobile,jdbcType=VARCHAR},
       </if>
+      <if test="userPWD != null">
+        userPWD = #{userPWD,jdbcType=VARCHAR},
+    </if>
+      <if test="userSalt != null">
+        userSalt = #{userSalt,jdbcType=VARCHAR},
+      </if>
       <if test="createStamp != null">
         createStamp = #{createStamp,jdbcType=TIMESTAMP},
       </if>
@@ -91,5 +111,18 @@
     </set>
     where userID = #{userID,jdbcType=BIGINT}
   </update>
+
+  <select id="getUserByMobileAndName" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tbl_hc_user_info
+    WHERE
+    userMobile = #{userMobile}
+    <if test="userName != null">
+      AND
+      userName = #{userName}
+    </if>
+  </select>
 
 </mapper>

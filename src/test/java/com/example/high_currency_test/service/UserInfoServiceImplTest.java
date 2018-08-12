@@ -27,7 +27,7 @@ public class UserInfoServiceImplTest {
     @Test
     public void saveUser_shouldTest() throws Exception {
 
-        UserInfo userInfo = new UserInfo();
+        UserInfo userInfo = null;
         userInfoService.saveUser(userInfo);
     }
 }

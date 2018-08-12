@@ -5,6 +5,8 @@ import com.example.high_currency_test.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author ZhangGR
  * @Created on 2018/8/10
@@ -42,8 +44,21 @@ public class UserInfoCommonService {
         return userInfoMapper.selectByPrimaryKey(pk);
     }
 
+    /**
+     * 根据主键删除用户信息
+     * @param pk
+     */
     public void deleteUser(Long pk) {
         userInfoMapper.deleteByPrimaryKey(pk);
+    }
+
+    /**
+     * 根据用户名查询用户信息（用户名可能重复、因此用列表返回）
+     * @param userName
+     * @return
+     */
+    public List<UserInfo> getUserListByMoBileAndName(String userMobile, String userName) {
+        return userInfoMapper.getUserByMobileAndName(userMobile, userName);
     }
 
 }
